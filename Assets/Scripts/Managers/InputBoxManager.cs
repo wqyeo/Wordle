@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InputBoxManager : MonoBehaviour {
 
     [System.Serializable]
-    public struct BoxSprites {
+    private struct BoxSprites {
         [SerializeField, Tooltip("Totally correct")]
         private Sprite correctSprite;
 
@@ -29,17 +27,20 @@ public class InputBoxManager : MonoBehaviour {
     [SerializeField]
     private BoxSprites boxSprites;
 
-    public BoxSprites BoxSprite {
-        get => boxSprites;
-    }
+    [SerializeField]
+    private BoxRow[] boxRows;
 
-    // Start is called before the first frame update
-    void Start() {
+    public Sprite GetSpriteByCharState(CharState charState) {
+        switch (charState) {
+            case CharState.CORRECT:
+                return boxSprites.CorrectSprite;
+            case CharState.POSITION:
+                return boxSprites.PositionSprite;
+            case CharState.WRONG:
+                return boxSprites.WrongSprite;
+        }
 
-    }
-
-    // Update is called once per frame
-    void Update() {
-
+        Debug.LogWarning("InputBoxManager.cs :: Switch Case fallthrough.");
+        return boxSprites.WrongSprite;
     }
 }

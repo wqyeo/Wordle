@@ -2,14 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using TMPro;
+
+[RequireComponent(typeof(SpriteRenderer))]
 public class InputBox : MonoBehaviour {
-    // Start is called before the first frame update
-    void Start() {
+    private SpriteRenderer spriteRenderer;
 
-    }
+    private TextMeshProUGUI text;
 
-    // Update is called once per frame
-    void Update() {
+    private void Start() {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        text = GetComponentInChildren<TextMeshProUGUI>();
 
+#if UNITY_EDITOR
+        if (text == null) {
+            Debug.LogError($"InputBox.cs ({gameObject.name}) :: InputBox have no TextMeshPro in children.");
+        }
+#endif
     }
 }
