@@ -9,7 +9,7 @@ using System;
 [RequireComponent(typeof(Button))]
 public class Key : MonoBehaviour {
 
-    public delegate char OnKeyPress();
+    public delegate void OnKeyPress(char character);
 
     public OnKeyPress onKeyPressCallback;
 
@@ -33,7 +33,7 @@ public class Key : MonoBehaviour {
         #region Local_Function
         void AddButtonCallback() {
             button.onClick.AddListener(delegate {
-                onKeyPressCallback.Invoke();
+                onKeyPressCallback?.Invoke(Character);
             });
         }
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class InputBoxManager : MonoBehaviour {
+public class InputBoxManager : Singleton<InputBoxManager> {
 
     [System.Serializable]
     private struct BoxSprites {
