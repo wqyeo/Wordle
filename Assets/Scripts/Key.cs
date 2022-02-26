@@ -38,8 +38,8 @@ public class Key : MonoBehaviour {
         }
 
         void AssignCharacterByText() {
-            var text = GetComponentInChildren<TextMeshProUGUI>();
-            Character = text.text[0];
+            GetComponentInChildren<TextMeshProUGUI>().text = gameObject.name;
+            Character = gameObject.name[0];
         }
         #endregion
     }
